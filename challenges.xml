@@ -1,0 +1,27 @@
+<Challenges>
+
+<Challenge>
+    <Name>FaceOff</Name>
+    <Description>Robots are facing off</Description>
+    <Robots>
+        <TeamYellow>
+            <Robot id='0' x='1' y='-1'/>
+            <Robot id='1' x='2' y='-1'/>
+            <Robot id='2' x='3' y='-1'/>
+            <Robot id='3' x='4' y='-1'/>
+            <Robot id='4' x='5' y='-1'/>
+            <Robot id='5' x='6' y='-1'/>
+        </TeamYellow>
+        <TeamBlue>
+            <Robot id='0' x='1' y='1'/>
+            <Robot id='1' x='2' y='1'/>
+            <Robot id='2' x='3' y='1'/>
+            <Robot id='3' x='4' y='1'/>
+            <Robot id='4' x='5' y='1'/>
+            <Robot id='5' x='6' y='1'/>
+        </TeamBlue>
+    </Robots>
+    <Ball x='0' y='0'/>
+</Challenge>
+
+</Challenges>
