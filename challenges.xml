@@ -48,6 +48,7 @@
 
     </Robots>
     <Ball x='0' y='0'/>
+    <Strategy>center</Strategy>
 </Challenge>
 
 </Challenges>

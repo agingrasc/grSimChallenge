@@ -54,6 +54,8 @@ class CompetitionGUI(QMainWindow):
 
         self.description_label.setText(challenge.description)
 
+        self.strategie.set_mode(challenge.strategy)
+
     def closeEvent(self,event):
         self.framework.stop_game()
 
