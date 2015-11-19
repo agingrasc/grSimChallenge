@@ -18,9 +18,9 @@ class CompetitionGUI(QMainWindow):
 
         self.remote = grSimRemote("127.0.0.1", 20011)
 
-        self.framework = Framework()
+        self.framework = Framework(is_team_yellow = True)
         self.framework.start_game(ChallengeStrategy, async=True)
-        self.strategie = self.framework.blue_team_strategy
+        self.strategie = self.framework.strategy
 
         loadUi("roboul_main.ui", self)
 
