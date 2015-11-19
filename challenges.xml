@@ -22,6 +22,7 @@
         </TeamBlue>
     </Robots>
     <Ball x='0' y='0'/>
+    <Strategy>halt</Strategy>
 </Challenge>
 
 <Challenge>

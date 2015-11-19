@@ -7,6 +7,8 @@ from PyQt5.QtGui import QIcon
 from PyQt5.uic import loadUi
 from challenge import load_challenges
 from communication.grSimRemote import grSimRemote
+from RULEngine.Framework import Framework
+from ChallengeStrategy import ChallengeStrategy
 
 
 class CompetitionGUI(QMainWindow):
@@ -15,6 +17,10 @@ class CompetitionGUI(QMainWindow):
         super().__init__()
 
         self.remote = grSimRemote("127.0.0.1", 20011)
+
+        self.framework = Framework()
+        self.framework.start_game(ChallengeStrategy, async=True)
+        self.strategie = self.framework.blue_team_strategy
 
         loadUi("roboul_main.ui", self)
 
@@ -47,6 +53,9 @@ class CompetitionGUI(QMainWindow):
         self.remote.end_batch()
 
         self.description_label.setText(challenge.description)
+
+    def closeEvent(self,event):
+        self.framework.stop_game()
 
 
 if __name__ == '__main__':

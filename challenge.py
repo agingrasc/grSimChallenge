@@ -14,6 +14,10 @@ class Challenge:
         self.yellow = self._loadTeam(node.find('Robots').find('TeamYellow'))
         self.blue = self._loadTeam(node.find('Robots').find('TeamBlue'))
         self.ball = self._loadBall(node.find('Ball'))
+        try:
+            self.strategy = node.find('Strategy').text
+        except AttributeError:
+            self.strategy = 'halt'
 
     def _loadBall(self, ball_node):
 
