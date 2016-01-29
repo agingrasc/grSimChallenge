@@ -12,6 +12,7 @@ class grSimRemote():
 
     def __init__(self, host, port):
         self.server = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+        self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.connection_info = (host, port)
         self.server.connect(self.connection_info)
         self.packet = None
