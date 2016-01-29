@@ -23,7 +23,7 @@ class ChallengeStrategy(Strategy):
         self._send_command(Command.MoveTo(self.team.players[0], self.team, Position(0,0)))
 
     def on_halt(self):
-        self.on_start()
+        pass
 
     def on_stop(self):
-        self.on_start()
+        pass

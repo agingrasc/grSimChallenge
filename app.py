@@ -9,6 +9,7 @@ from challenge import load_challenges
 from communication.grSimRemote import grSimRemote
 from RULEngine.Framework import Framework
 from ChallengeStrategy import ChallengeStrategy
+from RULEngine.Game.Referee import Command as RefCommand
 
 
 class CompetitionGUI(QMainWindow):
@@ -30,11 +31,26 @@ class CompetitionGUI(QMainWindow):
         for challenge in self.challenges:
             self.defis_comboBox.addItem(challenge.name, challenge)
 
+        self.resetButton.clicked.connect(self.reset)
+        self.startButton.toggled.connect(self.startstop)
+
         self.show()
+
+    def reset(self):
+        self.change_challenge(self.defis_comboBox.currentIndex())
+
+    def startstop(self, start):
+        if start:
+            command = "NORMAL_START"
+        else:
+            command = "HALT"
+
+        self.framework.game.referee.command = RefCommand(command)
 
     def change_challenge(self, challenge_index):
 
         challenge = self.defis_comboBox.itemData(challenge_index)
+        challenge.reload()
 
         self.remote.start_batch()
 
