@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import sys
-from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow
-from PyQt5.QtGui import QIcon
-from PyQt5.uic import loadUi
+from PyQt4.QtGui import QApplication, QWidget, QMainWindow
+from PyQt4.QtGui import QIcon
+from PyQt4.uic import loadUi
 from challenge import load_challenges
 from communication.grSimRemote import grSimRemote
 from RULEngine.Framework import Framework
