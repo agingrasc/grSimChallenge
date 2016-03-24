@@ -2,7 +2,8 @@
 
 <Challenge>
     <Name>Defi 1</Name>
-    <Description>Robots are facing off</Description>
+    <Description>Votre premier objectif sera de prendre un robot et de le déplacer jusqu'à son objectif.\n
+    Les obstacles sont statiques.</Description>
     <Robots>
         <TeamYellow>
             <Robot id='[0,5]' x='[-1,1]' y='[-3,3]'/>
@@ -17,28 +18,68 @@
     <DefiClass>Defi1</DefiClass>
 </Challenge>
 
+    <Challenge>
+    <Name>Defi 1.5</Name>
+    <Description>Votre second objectif sera de prendre un robot et de le déplacer jusqu'à son objectif.
+    Les obstacles sont en mouvements.</Description>
+    <Robots>
+        <TeamYellow>
+            <Robot id='[0,5]' x='[-1,1]' y='[-3,3]'/>
+        </TeamYellow>
+        <TeamBlue>
+            <Robot id='0' x='-2.5' y='0'/>
+            <Robot id='[1,5]' x='[-1,1]' y='[-3,3]'/>
+        </TeamBlue>
+    </Robots>
+    <Ball x='15' y='15'/>
+    <Strategy>move_circle</Strategy>
+
+</Challenge>
+
 <Challenge>
     <Name>Defi 2</Name>
-    <Description>Robots are in circle</Description>
+    <Description>Votre deuxième défi est de programmer un gardien de but. Votre gardien devra être en
+    mesure de bloquer des tirs face à diverses stratégies.</Description>
     <Robots>
         <TeamYellow>
             <Robot id='0' x='1' y='0.5' theta='180'/>
             <Robot id='1' x='1' y='-0.5' theta='180'/>
-            <Robot id='[2,5]' x='[-10,-20]' y='[-10,-20]'/>
+            <Robot id='2' x='-4.5' y='0' theta='0'/>
+            <Robot id='[3,5]' x='[-10,-20]' y='[-10,-20]'/>
         </TeamYellow>
         <TeamBlue>
-            <Robot id='0' x='-4.5' y='0'/>
-            <Robot id='[1,5]' x='[10,20]' y='[10,20]'/>
+            <Robot id='[0,5]' x='[10,20]' y='[10,20]'/>
     </TeamBlue>
 
     </Robots>
     <Ball x='0' y='0'/>
-    <Strategy>center</Strategy>
+    <Strategy>attackStrategy</Strategy>
 </Challenge>
 
 <Challenge>
     <Name>Defi 3</Name>
-    <Description>Robots are in circle</Description>
+    <Description>Votre troisième défi est de programmer deux robots pour former une attaque contre un gardien de but statique.
+    </Description>
+    <Robots>
+        <TeamYellow>
+            <Robot id='0' x='4.5' y='0' theta='180'/>
+            <Robot id='[1,5]' x='[10,20]' y='[10,20]'/>
+        </TeamYellow>
+        <TeamBlue>
+            <Robot id='0' x='-1' y='0.5'/>
+            <Robot id='1' x='-1' y='-0.5'/>
+            <Robot id='[2,5]' x='[-10,-20]' y='[-10,-20]'/>
+    </TeamBlue>
+
+    </Robots>
+    <Ball x='0' y='0'/>
+    <Strategy>halt</Strategy>
+</Challenge>
+
+<Challenge>
+    <Name>Defi 3.1</Name>
+    <Description>La second partie du troisième défi est de programmer deux robots pour former une attaque contre un gardien de but dynamique.
+    </Description>
     <Robots>
         <TeamYellow>
             <Robot id='0' x='4.5' y='0' theta='180'/>
