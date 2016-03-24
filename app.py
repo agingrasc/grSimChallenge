@@ -40,7 +40,7 @@ class CompetitionGUI(QMainWindow):
 
         self.challenges = load_challenges("challenges.xml")
 
-        self.defis_comboBox.currentIndexChanged.connect(self.change_challenge)
+        self.defis_comboBox.currentIndexChanged.connect(self.change_challenge_box)
         for challenge in self.challenges:
             self.defis_comboBox.addItem(challenge.name, challenge)
 
@@ -67,10 +67,14 @@ class CompetitionGUI(QMainWindow):
 
         self.framework_ai.game.referee.command = RefCommand(command)
 
+    def change_challenge_box(self, challenge_index):
+        self.startstop(False)
+        self.startButton.setChecked(False)
+        self.change_challenge(challenge_index)
+
     def change_challenge(self, challenge_index):
 
-        if isinstance(self.framework_player, Framework):
-            self.framework_player.stop_game()
+        #This does not stop the framework_player
 
         challenge = self.defis_comboBox.itemData(challenge_index)
         challenge.reload()
