@@ -33,6 +33,7 @@
     </Robots>
     <Ball x='15' y='15'/>
     <Strategy>move_circle</Strategy>
+    <DefiClass>Defi1</DefiClass>
 
 </Challenge>
 
@@ -54,6 +55,7 @@
     </Robots>
     <Ball x='0' y='0'/>
     <Strategy>attackStrategy</Strategy>
+    <DefiClass>Defi2</DefiClass>
 </Challenge>
 
 <Challenge>
@@ -74,6 +76,7 @@
     </Robots>
     <Ball x='0' y='0'/>
     <Strategy>halt</Strategy>
+    <DefiClass>Defi3</DefiClass>
 </Challenge>
 
 <Challenge>
@@ -94,6 +97,7 @@
     </Robots>
     <Ball x='0' y='0'/>
     <Strategy>goaler</Strategy>
+    <DefiClass>Defi3</DefiClass>
 </Challenge>
 
 </Challenges>

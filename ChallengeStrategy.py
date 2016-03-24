@@ -121,7 +121,7 @@ class ChallengeStrategy(Strategy):
 
         enemy_dst_top = get_distance(goal_pst, Position(-4500, 800))
         enemy_dst_bot = get_distance(goal_pst, Position(-4500, -800))
-        if time.time() > self.beginTime + 8:
+        if time.time() > self.beginTime + 12:
             self.kickBallAction(i)
         elif enemy_dst_bot > enemy_dst_top:
             self.kickBallAction(i) if i else self.passBallAction(i)
