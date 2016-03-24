@@ -14,6 +14,7 @@
     </Robots>
     <Ball x='15' y='15'/>
     <Strategy>halt</Strategy>
+    <DefiClass>Defi1</DefiClass>
 </Challenge>
 
 <Challenge>

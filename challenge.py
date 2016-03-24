@@ -27,6 +27,10 @@ class Challenge:
             self.strategy = node.find('Strategy').text
         except AttributeError:
             self.strategy = 'halt'
+        try:
+            self.deficlass = node.find('DefiClass').text
+        except AttributeError:
+            self.deficlass = None
 
     def _loadBall(self, ball_node):
 
