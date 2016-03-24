@@ -11,8 +11,7 @@ class Defi1(Defi):
         self.etat = self.passer
 
     def passer(self, coach, terrain, etats, equipe_bleu, equipe_jaune):
-        coach.bouger(0, Position(1000,0))
-        self.prochain_etat(self.passer2, timeout=2)
+        coach.bouger(0, Position(3000, 0))
 
     def passer2(self, coach, terrain, etats, equipe_bleu, equipe_jaune):
         self.prochain_etat(self.termine)

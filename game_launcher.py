@@ -36,6 +36,7 @@ def getStrategy(defi):
                 self.old_ball_speed = 0
                 self.collider = Collision(team.players + opponent_team.players)
                 self.collision_warning = []
+                self.last_time_kick = time.time()
 
             def on_start(self):
                 defi.etat(self, self.field, self.robot_events, self.team.players, self.opponent_team.players)

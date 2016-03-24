@@ -44,11 +44,11 @@
         <TeamYellow>
             <Robot id='0' x='1' y='0.5' theta='180'/>
             <Robot id='1' x='1' y='-0.5' theta='180'/>
-            <Robot id='2' x='-4.5' y='0' theta='0'/>
-            <Robot id='[3,5]' x='[-10,-20]' y='[-10,-20]'/>
+            <Robot id='[2,5]' x='[-10,-20]' y='[-10,-20]'/>
         </TeamYellow>
         <TeamBlue>
-            <Robot id='[0,5]' x='[10,20]' y='[10,20]'/>
+            <Robot id='0' x='-4.5' y='0' theta='0'/>
+            <Robot id='[1,5]' x='[10,20]' y='[10,20]'/>
     </TeamBlue>
 
     </Robots>

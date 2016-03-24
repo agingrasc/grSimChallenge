@@ -113,8 +113,8 @@ class ChallengeStrategy(Strategy):
         bot_pst = self.team.players[i].pose.position
         bot_dir = self.team.players[i].pose.orientation
         ball_pst = self.field.ball.position
-        #TODO A MODIFIER ENEMY
-        goal_pst = self.team.players[2].pose.position
+
+        goal_pst = self.opponent_team.players[0].pose.position
         agl = get_angle(bot_pst, ball_pst)
         dst = get_distance(bot_pst, ball_pst)
 
