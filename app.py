@@ -11,15 +11,19 @@ from RULEngine.Framework import Framework
 from ChallengeStrategy import ChallengeStrategy
 from RULEngine.Game.Referee import Command as RefCommand
 import game_launcher
-import defi1
+import defi1, defi2, defi3
 import importlib
 
 def reload_defis():
     defis = {}
 
     importlib.reload(defi1)
+    importlib.reload(defi2)
+    importlib.reload(defi3)
 
     defis['Defi1'] = defi1.Defi1
+    defis['Defi2'] = defi2.Defi2
+    defis['Defi3'] = defi3.Defi3
 
     return defis
 
