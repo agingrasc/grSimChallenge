@@ -205,6 +205,22 @@ def getStrategy(defi):
                 command = Command.MoveToAndRotate(player, self.team, pose)
                 self._send_command(command)
 
+            def _raycast(self, pos, vec, threshold):
+                print("Raycast check.")
+                self.collider = Collision(self.team.players + self.opponent_team.players)
+                cols = []
+                pos_test = vec + pos
+
+                vec.length = threshold
+                pos_test = vec + pos_test
+                while pos_test.x < FIELD_X_RIGHT and pos_test.x > FIELD_X_LEFT and pos_test.y < FIELD_Y_TOP and pos_test.y > FIELD_Y_BOTTOM:
+                    if self.collision(pos_test):
+                        print("Collision found")
+                        cols.append(pos_test)
+                    pos_test = vec + pos_test
+
+                return cols
+
 
             # ----------Public----------
             def bouger(self, joueur, position, cible=None):
@@ -352,7 +368,7 @@ def getStrategy(defi):
                 else:
                     return self.opponent_team.players[joueur].pose.orientation
 
-            def raycast(self, joueur, vec, team=NOUS):
+            def raycast(self, joueur, vec, threshold = 2.5*ROBOT_RADIUS, team=NOUS):
                 """
                 Retourne une liste contenant les positions des collisions de tracer un rayon à partir de joueur dans
                 la direction du vecteur.
@@ -361,53 +377,8 @@ def getStrategy(defi):
                 :param team: (OPT) l'équipe défini par la constante NOUS ou EUX
                 :return: Une liste de posision des collisions détectés. Si vide -> il n'y a pas de collisions
                 """
-                ret = []
-                if team == NOUS:
-                    joueur = self.team.players[joueur]
-                else:
-                    joueur = self.opponent_team.players[joueur]
-
-                joueur_pos = joueur.pose.position
-                x = joueur_pos.x
-                y = joueur_pos.y
-
-                obj = self.team.players + self.opponent_team.players
-                for o in obj:
-                    pos = o.pose.position
-                    xp = pos.x
-                    yp = pos.y
-                    x_min = xp - BOUNDING_BOX_DELTA
-                    x_max = xp + BOUNDING_BOX_DELTA
-                    y_min = yp - BOUNDING_BOX_DELTA
-                    y_max = yp + BOUNDING_BOX_DELTA
-
-                    if vec.x == 0 and vec.y == 0:
-                        # vecteur nulle
-                        continue
-                    elif vec.x == 0:
-                        # aucune variation en x
-                        continue
-                    elif vec.y == 0:
-                        # aucune variation en y
-                        continue
-                    else:
-                        kx = (xp - x)/vec.x
-                        ky = (yp - y)/vec.y
-
-                    print("Collision detecte!")
-
-                    xn = x + kx*vec.x
-                    yn = y + ky*vec.y
-
-                    if xn > x_min and xn < x_max and yn > y_min and yn < y_max:
-                        posn = Position(xn, yn)
-                        theta = get_angle(joueur_pos, posn)
-                        phi = m.pi/2 - theta
-                        xc = xp + BOUNDING_BOX_DELTA*m.cos(phi)
-                        yc = yp + BOUNDING_BOX_DELTA*m.sin(phi)
-                        coll = Position(xp, yp)
-                        ret.append(coll)
-                return ret
+                pos = self.get_position(joueur, team)
+                return self._raycast(pos, vec, threshold)
 
 
     return DefiStrategy
