@@ -10,6 +10,7 @@ from RULEngine.Util import geometry
 from RULEngine.Util.Pose import Pose
 from RULEngine.Util.Position import Position
 from RULEngine.Util.constant import *
+from RULEngine.Util.Vector import Vector
 
 from Util.gameLogic import Collision
 
@@ -392,6 +393,8 @@ def getStrategy(defi):
                     else:
                         kx = (xp - x)/vec.x
                         ky = (yp - y)/vec.y
+
+                    print("Collision detecte!")
 
                     xn = x + kx*vec.x
                     yn = y + ky*vec.y
