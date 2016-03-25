@@ -224,7 +224,10 @@ class ChallengeStrategy(Strategy):
         self._send_command(Command.MoveTo(self.team.players[0], self.team, position))
 
     def on_halt(self):
-        pass
+        self.on_stop()
 
     def on_stop(self):
-        pass
+        for player in self.team.players:
+            pose = player.pose
+            command = Command.MoveToAndRotate(player, self.team, pose)
+            self._send_command(command)

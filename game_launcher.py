@@ -305,6 +305,15 @@ def getStrategy(defi):
                 position = Position(x,y)
                 self.bouger(joueur, position, cible)
 
+
+            def stop(self, joueur):
+                """
+                :param joueur: Le numéro du robot à stopper
+                :return: Rien, cette fonction modifie l'état des robots
+                """
+                self.robot_states[joueur] = self._idle
+                self.robot_events[joueur] = EVENT_SUCCEED
+
             def collision(self, pos):
                 self.collider = Collision(self.team.players + self.opponent_team.players)
                 return self.collider.collision(pos)
