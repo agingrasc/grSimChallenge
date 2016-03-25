@@ -17,6 +17,8 @@ EVENT_SUCCEED = "success"
 EVENT_TIMEOUT = "timeout"
 EVENT_FAIL = "rate"
 EVENT_WIP = "inprogress"
+NOUS = 'blue'
+EUX = 'yellow'
 
 def getStrategy(defi):
     class DefiStrategy(Strategy):
@@ -41,7 +43,6 @@ def getStrategy(defi):
             def on_start(self):
                 defi.etat(self, self.field, self.robot_events, self.team.players, self.opponent_team.players)
                 self.collider = Collision(self.team.players + self.opponent_team.players)
-                self.collision_warning = self.collider.check_collision()
                 self.execute()
 
             def execute(self):
@@ -71,6 +72,8 @@ def getStrategy(defi):
                 if self.robot_events[joueur] == EVENT_SUCCEED:
                     self.robot_events[joueur] = EVENT_WIP
                     self.robot_states[joueur] = state
+
+
 
 
             # ----------Private---------
@@ -315,8 +318,38 @@ def getStrategy(defi):
                 self.robot_events[joueur] = EVENT_SUCCEED
 
             def collision(self, pos):
+                """
+                Vérifie si positionné un robot à une position engendre une collision.
+                :param pos: La position à vérifier
+                :return: True si la position est en collision avec un objet sur le terrain
+                """
                 self.collider = Collision(self.team.players + self.opponent_team.players)
                 return self.collider.collision(pos)
+
+            def get_position(self, joueur, team=NOUS):
+                """
+                Retourne la position du robot identifié par joueur
+                :param joueur: Le numéro du robot dont on veut récupérer la position
+                :param team: (OPT) l'équipe défini par la constante NOUS ou EUX
+                :return: La position du robot.
+                """
+                if team == NOUS:
+                    return self.team.players[joueur].pose.position
+                else:
+                    return self.opponent_team.players[joueur].pose.position
+
+            def get_orientation(self, joueur, team=NOUS):
+                """
+                Retourne l'orientation du robot identifié par joueur
+                :param joueur: Le numéro du robot dont on veut récupérer l'orientation
+                :param team: (OPT) l'équipe défini par la constante NOUS ou EUX
+                :return: L'orientation (radian) du robot
+                """
+                if team == NOUS:
+                    return self.team.players[joueur].pose.orientation
+                else:
+                    return self.opponent_team.players[joueur].pose.orientation
+
 
     return DefiStrategy
 
