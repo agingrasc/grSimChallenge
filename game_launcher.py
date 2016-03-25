@@ -19,6 +19,7 @@ EVENT_FAIL = "rate"
 EVENT_WIP = "inprogress"
 NOUS = 'blue'
 EUX = 'yellow'
+BOUNDING_BOX_DELTA = ROBOT_RADIUS * 2
 
 def getStrategy(defi):
     class DefiStrategy(Strategy):
@@ -349,6 +350,61 @@ def getStrategy(defi):
                     return self.team.players[joueur].pose.orientation
                 else:
                     return self.opponent_team.players[joueur].pose.orientation
+
+            def raycast(self, joueur, vec, team=NOUS):
+                """
+                Retourne une liste contenant les positions des collisions de tracer un rayon à partir de joueur dans
+                la direction du vecteur.
+                :param joueur: Le numéro du robot à partir duquel le rayon est tracé
+                :param vec: Vecteur du rayon tracé.
+                :param team: (OPT) l'équipe défini par la constante NOUS ou EUX
+                :return: Une liste de posision des collisions détectés. Si vide -> il n'y a pas de collisions
+                """
+                ret = []
+                if team == NOUS:
+                    joueur = self.team.players[joueur]
+                else:
+                    joueur = self.opponent_team.players[joueur]
+
+                joueur_pos = joueur.pose.position
+                x = joueur_pos.x
+                y = joueur_pos.y
+
+                obj = self.team.players + self.opponent_team.players
+                for o in obj:
+                    pos = o.pose.position
+                    xp = pos.x
+                    yp = pos.y
+                    x_min = xp - BOUNDING_BOX_DELTA
+                    x_max = xp + BOUNDING_BOX_DELTA
+                    y_min = yp - BOUNDING_BOX_DELTA
+                    y_max = yp + BOUNDING_BOX_DELTA
+
+                    if vec.x == 0 and vec.y == 0:
+                        # vecteur nulle
+                        continue
+                    elif vec.x == 0:
+                        # aucune variation en x
+                        continue
+                    elif vec.y == 0:
+                        # aucune variation en y
+                        continue
+                    else:
+                        kx = (xp - x)/vec.x
+                        ky = (yp - y)/vec.y
+
+                    xn = x + kx*vec.x
+                    yn = y + ky*vec.y
+
+                    if xn > x_min and xn < x_max and yn > y_min and yn < y_max:
+                        posn = Position(xn, yn)
+                        theta = get_angle(joueur_pos, posn)
+                        phi = m.pi/2 - theta
+                        xc = xp + BOUNDING_BOX_DELTA*m.cos(phi)
+                        yc = yp + BOUNDING_BOX_DELTA*m.sin(phi)
+                        coll = Position(xp, yp)
+                        ret.append(coll)
+                return ret
 
 
     return DefiStrategy
