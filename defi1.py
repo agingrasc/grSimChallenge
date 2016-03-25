@@ -14,7 +14,7 @@ class Defi1(Defi):
     def passer(self, coach, terrain, etats, equipe_bleu, equipe_jaune):
         colls = coach.raycast(0, Vector())
         for i in colls:
-            print(i)
+            print("Collision: " + str(i))
         coach.bouger(0, Position(3000, 0))
 
     def passer2(self, coach, terrain, etats, equipe_bleu, equipe_jaune):
